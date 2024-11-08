@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "openai-proxy"
+version = "0.1.0"
+description = ""
+authors = ["ragaysin <ragaysin@avito.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.4"}
+httpx = "^0.27.2"
+pydantic-settings = "^2.6.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
