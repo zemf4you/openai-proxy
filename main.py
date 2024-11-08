@@ -3,6 +3,8 @@ from http import HTTPMethod
 import httpx
 from fastapi import FastAPI, Request, Response
 
+from settings import settings
+
 app = FastAPI()
 
 
@@ -19,7 +21,9 @@ app = FastAPI()
 ])
 async def proxy_openai_requests(request: Request, path: str):
     url = f"https://openai.com/{path}"
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(
+            proxy=settings.proxy,
+    ) as client:
         response = await client.request(
             method=request.method,
             url=url,
