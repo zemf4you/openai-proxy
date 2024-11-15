@@ -1,9 +1,0 @@
-POST http://localhost:8000/chat/completions
-
-{
-  "model": "gpt-4o",
-  "messages": [
-    {"role": "system", "content": "You're a smart assistant."},
-    {"role": "user", "content": "Tell me a joke."}
-  ]
-}

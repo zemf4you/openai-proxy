@@ -1,0 +1,75 @@
+### Chat completions
+POST http://localhost:8000/v1/chat/completions
+Content-Type: application/json
+
+{
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You're a smart assistant."
+    },
+    {
+      "role": "user",
+      "content": "Say 'Hello', nothing more. Exactly."
+    }
+  ]
+}
+
+
+### Chat completions witn stream=true
+POST http://localhost:8000/v1/chat/completions
+Content-Type: application/json
+
+{
+  "stream": true,
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You're a smart assistant."
+    },
+    {
+      "role": "user",
+      "content": "Say 'Hello', nothing more. Exactly."
+    }
+  ]
+}
+
+### Chat completions (no stream support) witn stream=true
+POST http://localhost:8000/v1/chat/completions
+Content-Type: application/json
+
+{
+  "stream": true,
+  "model": "o1-preview",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Say 'Hello', nothing more. Exactly."
+    }
+  ]
+}
+
+### Get models list
+GET http://localhost:8000/v1/models
+
+### Chat completions (original) with stream=true
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+#Authorization: Bearer TOKEN
+
+{
+  "stream": true,
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You're a smart assistant."
+    },
+    {
+      "role": "user",
+      "content": "Say 'hello', nothing more."
+    }
+  ]
+}
