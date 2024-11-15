@@ -40,12 +40,14 @@ async def handle_openai_api_errors(request: Request, call_next):
 
 @app.post("/v1/chat/completions", response_model=ChatCompletion)
 async def chat_completions(params: CompletionCreateParams):
-    stream_support = params['model'] not in NON_STREAM_MODELS
-    stream_requested = params.get('stream', False)
-    params['stream'] = stream_requested and stream_support
+    stream_supported = params["model"] not in NON_STREAM_MODELS
+    stream_requested = params.get("stream", False)
+    params["stream"] = stream_requested and stream_supported
+    if not stream_supported and "stream_options" in params:
+        del params["stream_options"]
     response = await client.chat.completions.create(**params)
     if stream_requested:
-        if stream_support:
+        if stream_supported:
             stream = iter_async_stream(response)
         else:
             stream = handle_non_stream_models(response)
